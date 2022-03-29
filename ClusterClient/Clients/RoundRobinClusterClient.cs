@@ -1,22 +1,41 @@
 ﻿using System;
 using System.Threading.Tasks;
-using ClusterClient.Clients;
 using log4net;
 
-namespace ClusterTests;
-
-public class RoundRobinClusterClient : ClusterClientBase
+namespace ClusterClient.Clients
 {
-	public RoundRobinClusterClient(string[] replicaAddresses)
-		: base(replicaAddresses)
-	{
-		throw new NotImplementedException();
-	}
+    public class RoundRobinClusterClient : ClusterClientBase
+    {
+        private readonly Random random = new Random();
 
-	public override Task<string> ProcessRequestAsync(string query, TimeSpan timeout)
-	{
-		throw new NotImplementedException();
-	}
+        public RoundRobinClusterClient(string[] replicaAddresses)
+            : base(replicaAddresses)
+        {
+        }
 
-	protected override ILog Log => LogManager.GetLogger(typeof(RoundRobinClusterClient));
+        public override async Task<string> ProcessRequestAsync(string query, TimeSpan timeout)
+        {
+            var replicaCounter = ReplicaAddresses.Length;
+            var averageTimeout = timeout / replicaCounter;
+
+            //ReplicaAddresses.OrderBy(x => random.Next()) -- ShouldNotSpendTimeOnBad test failed
+            foreach (var uri in ReplicaAddresses)
+            {
+                var webRequest = CreateRequest(uri + "?query=" + query);
+                Log.InfoFormat($"Processing {webRequest.RequestUri}");
+                var resultTask = ProcessRequestAsync(webRequest);
+
+                await Task.WhenAny(resultTask, Task.Delay(averageTimeout));
+                if (resultTask.IsCompletedSuccessfully)
+                    return resultTask.Result;
+
+                if (resultTask.IsFaulted)
+                    averageTimeout = timeout / (--replicaCounter);
+            }
+
+            throw new TimeoutException();
+        }
+
+        protected override ILog Log => LogManager.GetLogger(typeof(RoundRobinClusterClient));
+    }
 }

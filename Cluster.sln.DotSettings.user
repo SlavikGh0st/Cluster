@@ -3,5 +3,7 @@
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;NUnit3x::E95440F9-E70D-43D0-9021-66C2129996C3::.NETCoreApp,Version=v6.0::ClusterTests.RandomClusterClientTest&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::E95440F9-E70D-43D0-9021-66C2129996C3::.NETCoreApp,Version=v6.0::ClusterTests.ParallelClusterClientTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::E95440F9-E70D-43D0-9021-66C2129996C3::.NETCoreApp,Version=v6.0::ClusterTests.RoundRobinClusterClientTest.Client_should_return_success_when_timeout_is_close&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::E95440F9-E70D-43D0-9021-66C2129996C3::.NETCoreApp,Version=v6.0::ClusterTests.RoundRobinClusterClientTest&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
