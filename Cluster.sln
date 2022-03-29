@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClusterServer", "ClusterServer\ClusterServer.csproj", "{03EB66DC-2B0C-43D4-AD84-8A4B88C07E58}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClusterClient", "ClusterClient\ClusterClient.csproj", "{6ADC71E9-605E-41E4-B600-E90D52526911}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClusterTests", "ClusterTests\ClusterTests.csproj", "{E95440F9-E70D-43D0-9021-66C2129996C3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{03EB66DC-2B0C-43D4-AD84-8A4B88C07E58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03EB66DC-2B0C-43D4-AD84-8A4B88C07E58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03EB66DC-2B0C-43D4-AD84-8A4B88C07E58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03EB66DC-2B0C-43D4-AD84-8A4B88C07E58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6ADC71E9-605E-41E4-B600-E90D52526911}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ADC71E9-605E-41E4-B600-E90D52526911}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ADC71E9-605E-41E4-B600-E90D52526911}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ADC71E9-605E-41E4-B600-E90D52526911}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E95440F9-E70D-43D0-9021-66C2129996C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E95440F9-E70D-43D0-9021-66C2129996C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E95440F9-E70D-43D0-9021-66C2129996C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E95440F9-E70D-43D0-9021-66C2129996C3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
