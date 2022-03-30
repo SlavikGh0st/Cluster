@@ -29,8 +29,7 @@ namespace ClusterTests
 				CreateServer(1, status: 500);
 			CreateServer(Fast);
 
-			var a = ProcessRequests(Timeout);
-			a.Last().Should().BeCloseTo(TimeSpan.FromMilliseconds(Fast), Epsilon);
+			ProcessRequests(Timeout).Last().Should().BeCloseTo(TimeSpan.FromMilliseconds(Fast), Epsilon);
 		}
 
         [Test]
