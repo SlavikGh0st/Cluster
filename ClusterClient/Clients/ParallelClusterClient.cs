@@ -14,27 +14,26 @@ namespace ClusterClient.Clients
 
         public override async Task<string> ProcessRequestAsync(string query, TimeSpan timeout)
         {
-            var webRequests = ReplicaAddresses.Select(async uri =>
+            var pendingRequests = ReplicaAddresses
+                .Select(async uri =>
+                {
+                    var request = CreateRequest(uri + "?query=" + query);
+                    Log.InfoFormat($"Processing {request.RequestUri}");
+                    var resultTask = ProcessRequestAsync(request);
+
+                    await Task.WhenAny(resultTask, Task.Delay(timeout));
+                    if (!resultTask.IsCompleted)
+                        throw new TimeoutException();
+
+                    return resultTask.Result;
+                }).ToList();
+
+            while (pendingRequests.Count > 0)
             {
-                var webRequest = CreateRequest(uri + "?query=" + query);
-                Log.InfoFormat($"Processing {webRequest.RequestUri}");
-                var resultTask = ProcessRequestAsync(webRequest);
-
-                await Task.WhenAny(resultTask, Task.Delay(timeout));
-                if (!resultTask.IsCompleted)
-                    throw new TimeoutException();
-
-                return resultTask.Result;
-            }).ToList();
-
-            while (webRequests.Count > 0)
-            {
-                await Task.WhenAny(webRequests);
-
-                var completed = webRequests.First(request => request.IsCompleted);
-                if (completed.IsCompletedSuccessfully)
-                    return completed.Result;
-                webRequests.Remove(completed);
+                var completedTask = await Task.WhenAny(pendingRequests);
+                if (completedTask.IsCompletedSuccessfully)
+                    return completedTask.Result;
+                pendingRequests.Remove(completedTask);
             }
 
             throw new TimeoutException();
@@ -43,4 +42,3 @@ namespace ClusterClient.Clients
         protected override ILog Log => LogManager.GetLogger(typeof(ParallelClusterClient));
     }
 }
-

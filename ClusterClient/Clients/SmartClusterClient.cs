@@ -18,32 +18,31 @@ namespace ClusterClient.Clients
             var replicaCounter = ReplicaAddresses.Length;
             var averageTimeout = timeout / replicaCounter;
             var pendingRequests = new List<Task<string>>();
-            
+
             //ReplicaAddresses.OrderBy(x => random.Next()) -- ShouldNotSpendTimeOnBad test failed
             foreach (var uri in ReplicaAddresses)
             {
-                var webRequest = CreateRequest(uri + "?query=" + query);
-                Log.InfoFormat($"Processing {webRequest.RequestUri}");
+                var request = CreateRequest(uri + "?query=" + query);
+                Log.InfoFormat($"Processing {request.RequestUri}");
+                var currentRequest = ProcessRequestAsync(request);
 
-                var currentRequest = ProcessRequestAsync(webRequest);
                 pendingRequests.Add(currentRequest);
-                var delay = Task.Delay(averageTimeout);
-                
+                var timeoutTask = Task.Delay(averageTimeout);
                 do
                 {
-                    var completedTask = await Task.WhenAny(pendingRequests.Append(delay));
-                    if (completedTask is Task<string> request)
+                    var completedTask = await Task.WhenAny(pendingRequests.Append(timeoutTask));
+                    if (completedTask is Task<string> completedRequest)
                     {
-                        if (request.IsCompletedSuccessfully)
-                            return request.Result;
+                        if (completedRequest.IsCompletedSuccessfully)
+                            return completedRequest.Result;
 
                         //bad requests
-                        pendingRequests.Remove(request);
+                        pendingRequests.Remove(completedRequest);
                         averageTimeout = timeout / (--replicaCounter);
-                        if (request == currentRequest)
+                        if (completedRequest == currentRequest)
                             break;
                     }
-                } while (!delay.IsCompleted);
+                } while (!timeoutTask.IsCompleted);
             }
 
             throw new TimeoutException();

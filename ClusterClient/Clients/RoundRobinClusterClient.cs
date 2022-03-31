@@ -21,9 +21,9 @@ namespace ClusterClient.Clients
             //ReplicaAddresses.OrderBy(x => random.Next()) -- ShouldNotSpendTimeOnBad test failed
             foreach (var uri in ReplicaAddresses)
             {
-                var webRequest = CreateRequest(uri + "?query=" + query);
-                Log.InfoFormat($"Processing {webRequest.RequestUri}");
-                var resultTask = ProcessRequestAsync(webRequest);
+                var request = CreateRequest(uri + "?query=" + query);
+                Log.InfoFormat($"Processing {request.RequestUri}");
+                var resultTask = ProcessRequestAsync(request);
 
                 await Task.WhenAny(resultTask, Task.Delay(averageTimeout));
                 if (resultTask.IsCompletedSuccessfully)
