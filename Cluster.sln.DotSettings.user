@@ -1,10 +1,13 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=cc3fcac1_002D805c_002D47ae_002D8e7a_002D14ff8a8bea4c/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="RandomClusterClientTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::E95440F9-E70D-43D0-9021-66C2129996C3::.NETCoreApp,Version=v6.0::ClusterTests.RandomClusterClientTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::E95440F9-E70D-43D0-9021-66C2129996C3::.NETCoreApp,Version=v6.0::ClusterTests.ParallelClusterClientTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::E95440F9-E70D-43D0-9021-66C2129996C3::.NETCoreApp,Version=v6.0::ClusterTests.RoundRobinClusterClientTest.Client_should_return_success_when_timeout_is_close&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::E95440F9-E70D-43D0-9021-66C2129996C3::.NETCoreApp,Version=v6.0::ClusterTests.RoundRobinClusterClientTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::E95440F9-E70D-43D0-9021-66C2129996C3::.NETCoreApp,Version=v6.0::ClusterTests.SmartClusterClientTest&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
+  &lt;Or&gt;&#xD;
+    &lt;TestAncestor&gt;&#xD;
+      &lt;TestId&gt;NUnit3x::E95440F9-E70D-43D0-9021-66C2129996C3::.NETCoreApp,Version=v6.0::ClusterTests.SmartRoundRobinClusterClientTest&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;NUnit3x::E95440F9-E70D-43D0-9021-66C2129996C3::.NETCoreApp,Version=v6.0::ClusterTests.ParallelClusterClientTest&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;NUnit3x::E95440F9-E70D-43D0-9021-66C2129996C3::.NETCoreApp,Version=v6.0::ClusterTests.RandomClusterClientTest&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;NUnit3x::E95440F9-E70D-43D0-9021-66C2129996C3::.NETCoreApp,Version=v6.0::ClusterTests.RoundRobinClusterClientTest&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;NUnit3x::E95440F9-E70D-43D0-9021-66C2129996C3::.NETCoreApp,Version=v6.0::ClusterTests.SmartClusterClientTest&lt;/TestId&gt;&#xD;
+    &lt;/TestAncestor&gt;&#xD;
+    &lt;ProjectFile&gt;E95440F9-E70D-43D0-9021-66C2129996C3/f:VerySmartClusterClientTest.cs&lt;/ProjectFile&gt;&#xD;
+  &lt;/Or&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
